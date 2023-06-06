@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="360dp"
+        android:layout_height="580dp"
+        android:orientation="vertical"
+        android:background="@drawable/corners_fb">
+
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="240dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="70dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="环境监测"
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/corners_text"
+            android:drawableLeft="@drawable/wendu"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="温度"
+            android:textColor="#D81B1B"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/shidu"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tv_msg"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25sp"
+            android:background="@drawable/corners_text"
+            android:drawableLeft="@drawable/shidu"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="湿度"
+            android:textColor="#809CFF"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/guangdu"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/shidu"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25sp"
+            android:background="@drawable/corners_text"
+            android:drawableLeft="@drawable/buttom_selected_one"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="光度"
+            android:textColor="#0BC644"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/huozai"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/guangdu"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25sp"
+            android:background="@drawable/corners_text"
+            android:drawableLeft="@drawable/wumai"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="火灾概率"
+            android:textColor="#0B9AC6"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/baojing"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/huozai"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25sp"
+            android:background="@drawable/corners_text"
+            android:drawableLeft="@drawable/baojing"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="报警"
+            android:textColor="#850BC6"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/menjin"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/baojing"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25sp"
+            android:background="@drawable/corners_text"
+            android:drawableLeft="@drawable/menjin"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="门禁"
+            android:textColor="#C69D0B"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/wendu2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/corners_bg"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/shidu2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="105dp"
+            android:background="@drawable/corners_bg"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/guangdu2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="192dp"
+            android:background="@drawable/corners_bg"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/huozai2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="275dp"
+            android:background="@drawable/corners_bg"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/baojing2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="362dp"
+            android:background="@drawable/corners_bg"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/menjin2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/title1"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="445dp"
+            android:background="@drawable/corners_bg"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+</RelativeLayout>
