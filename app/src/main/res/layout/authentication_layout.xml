@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="360dp"
+        android:layout_height="580dp"
+        android:orientation="vertical"
+        android:background="@drawable/corners_fb">
+        <TextView
+            android:id="@+id/renzheng"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/corners_fb"
+            android:gravity="center"
+            android:text=""
+            android:textSize="20dp"
+            android:layout_marginTop="30sp"/>
+        <GridLayout
+            android:layout_marginTop="200sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="3"
+            android:rowCount="4">
+
+            <!-- 第一行 -->
+            <Button
+                android:id="@+id/num1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/num2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/num3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="3" />
+
+            <!-- 第二行 -->
+            <Button
+                android:id="@+id/num4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/num5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/num6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="6" />
+
+            <!-- 第三行 -->
+            <Button
+                android:id="@+id/num7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/num8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/num9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="9" />
+
+            <!-- 第四行 -->
+            <Button
+                android:id="@+id/num0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_columnWeight="2"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/sure"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:text="确认" />
+
+        </GridLayout>
+    </RelativeLayout>
+</RelativeLayout>
