@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private SettingFragment settingFragment;
 
+    private AuthenticationFragment authenticationFragment;
     /**
      * 消息界面布局
      */
@@ -140,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 设置界面布局
      */
     private View settingLayout;
+
+    private View authenticationLayout;
 
     /**
      * 在Tab布局上显示消息图标的控件
@@ -161,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private ImageView settingImage;
 
+    private ImageView authenticationImage;
     /**
      * 在Tab布局上显示消息标题的控件
      */
@@ -181,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private TextView settingText;
 
+    private TextView authenticationText;
     /**
      * 用于对Fragment进行管理
      */
@@ -190,8 +195,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);  //注册
-        Log.d(TAG, "This is onStart");
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);  //注册
+        }
     }
     @SuppressLint("WrongViewCast")
     @Override
@@ -206,14 +212,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contactsLayout = findViewById(R.id.contacts_layout);
         newsLayout = findViewById(R.id.news_layout);
         settingLayout = findViewById(R.id.setting_layout);
+        authenticationLayout = findViewById(R.id.authentication_layout);
         messageImage = (ImageView) findViewById(R.id.message_image);
         contactsImage = (ImageView) findViewById(R.id.contacts_image);
         newsImage = (ImageView) findViewById(R.id.news_image);
         settingImage = (ImageView) findViewById(R.id.setting_image);
+        authenticationImage = (ImageView) findViewById(R.id.authentication_image);
         messageText = (TextView) findViewById(R.id.message_text);
         contactsText = (TextView) findViewById(R.id.contacts_text);
         newsText = (TextView) findViewById(R.id.news_text);
         settingText = (TextView) findViewById(R.id.setting_text);
+        authenticationText = (TextView) findViewById(R.id.authentication_text);
         circle = (ImageView) findViewById(R.id.centerImage);
         circle2 = (ImageView) findViewById(R.id.centerImage2);
         shebei = (TextView) findViewById(R.id.shebei);
@@ -222,13 +231,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contactsLayout.setOnClickListener(this);
         newsLayout.setOnClickListener(this);
         settingLayout.setOnClickListener(this);
+        authenticationLayout.setOnClickListener(this);
 
         fragmentManager = getSupportFragmentManager();
         circle2.setVisibility(View.GONE);
         initViews();
         // 第一次启动时选中第0个tab
-        setTabSelection(2);
-        setTabSelection(1);
         setTabSelection(0);
 
     }
@@ -348,6 +356,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 当点击了设置tab时，选中第4个tab
                 setTabSelection(3);
                 break;
+            case R.id.authentication_layout:
+                // 当点击了人脸识别tab时，选中第5个tab
+                setTabSelection(4);
+                break;
             default:
                 break;
         }
@@ -407,7 +419,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 3:
-            default:
                 // 当点击了设置tab时，改变控件的图片和文字颜色
                 settingImage.setImageResource(R.drawable.buttom_selected_four);
                 settingText.setTextColor(Color.GREEN);
@@ -418,6 +429,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     // 如果SettingFragment不为空，则直接将它显示出来
                     transaction.show(settingFragment);
+                }
+                break;
+            case 4:
+            default:
+                // 当点击了动态tab时，改变控件的图片和文字颜色
+                authenticationImage.setImageResource(R.drawable.buttom_selected_four);
+                authenticationText.setTextColor(Color.GREEN);
+                if (authenticationFragment == null) {
+                    // 如果NewsFragment为空，则创建一个并添加到界面上
+                    authenticationFragment = new AuthenticationFragment();
+                    transaction.add(R.id.content, authenticationFragment);
+                } else {
+                    // 如果NewsFragment不为空，则直接将它显示出来
+                    transaction.show(authenticationFragment);
                 }
                 break;
         }
@@ -437,6 +462,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         newsText.setTextColor(Color.parseColor("#82858b"));
         settingImage.setImageResource(R.drawable.buttom_unselected_four);
         settingText.setTextColor(Color.parseColor("#82858b"));
+        authenticationImage.setImageResource(R.drawable.buttom_unselected_four);
+        authenticationText.setTextColor(Color.parseColor("#82858b"));
     }
 
     /**
@@ -457,6 +484,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (settingFragment != null) {
             transaction.hide(settingFragment);
+        }
+        if (authenticationFragment != null) {
+            transaction.hide(authenticationFragment);
         }
     }
     private void init() {

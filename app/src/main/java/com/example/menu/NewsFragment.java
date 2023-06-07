@@ -32,11 +32,11 @@ public class NewsFragment extends Fragment {
 
     private View rootview;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);  //注册
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);  //注册
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -136,10 +136,10 @@ public class NewsFragment extends Fragment {
 
     //private Timer timer=new Timer();
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);  //反注册EventBus
-        //timer.cancel();//取消任务
-    }
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        EventBus.getDefault().unregister(this);  //反注册EventBus
+//        //timer.cancel();//取消任务
+//    }
 }

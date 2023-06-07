@@ -32,12 +32,12 @@ public class MessageFragment extends Fragment {
     private
     int i =0;
 
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);  //注册
+//    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);  //注册
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,9 +99,9 @@ public class MessageFragment extends Fragment {
         //Toast.makeText(MessageFragment.this.getContext(), msg+"接收1", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);  //反注册EventBus
-    }
+//    @Override
+//    public void onDestroy(){
+//        super.onDestroy();
+//        EventBus.getDefault().unregister(this);  //反注册EventBus
+//    }
 }

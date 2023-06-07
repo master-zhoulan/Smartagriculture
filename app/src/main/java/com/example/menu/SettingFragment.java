@@ -23,11 +23,12 @@ public class SettingFragment extends Fragment {
     private View rootview;
     private Switch recognize;
     private ImageView imageView;
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);  //注册
-    }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);  //注册
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,9 +68,9 @@ public class SettingFragment extends Fragment {
         ImageView imageView = rootview.findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
     }
-    @Override
-    public void onDestroy(){
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);  //反注册EventBus
-    }
+//    @Override
+//    public void onDestroy(){
+//        super.onDestroy();
+//        EventBus.getDefault().unregister(this);  //反注册EventBus
+//    }
 }
