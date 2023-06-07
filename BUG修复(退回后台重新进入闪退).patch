@@ -1,0 +1,719 @@
+Index: app/src/main/java/com/example/menu/AuthenticationFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/menu/AuthenticationFragment.java b/app/src/main/java/com/example/menu/AuthenticationFragment.java
+new file mode 100644
+--- /dev/null	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
++++ b/app/src/main/java/com/example/menu/AuthenticationFragment.java	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -0,0 +1,209 @@
++package com.example.menu;
++
++import android.graphics.Color;
++import android.media.AudioManager;
++import android.media.ToneGenerator;
++import android.os.Bundle;
++
++import androidx.fragment.app.Fragment;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.Button;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import org.greenrobot.eventbus.EventBus;
++import org.greenrobot.eventbus.Subscribe;
++import org.greenrobot.eventbus.ThreadMode;
++import org.json.JSONException;
++import org.json.JSONObject;
++
++
++public class AuthenticationFragment extends Fragment {
++
++    private View rootview;
++    private TextView renzheng;
++    private Button num1;
++    private Button num2;
++    private Button num3;
++    private Button num4;
++    private Button num5;
++    private Button num6;
++    private Button num7;
++    private Button num8;
++    private Button num9;
++    private Button num0;
++    private Button queren;
++
++//    @Override
++//    public void onStart() {
++//        super.onStart();
++//        EventBus.getDefault().register(this);  //注册
++//    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        if(rootview == null) {
++            rootview = inflater.inflate(R.layout.authentication_layout, container, false);
++        }
++        renzheng = rootview.findViewById(R.id.renzheng);
++        num0 = rootview.findViewById(R.id.num0);
++        num1 = rootview.findViewById(R.id.num1);
++        num2 = rootview.findViewById(R.id.num2);
++        num3 = rootview.findViewById(R.id.num3);
++        num4 = rootview.findViewById(R.id.num4);
++        num5 = rootview.findViewById(R.id.num5);
++        num6 = rootview.findViewById(R.id.num6);
++        num7 = rootview.findViewById(R.id.num7);
++        num8 = rootview.findViewById(R.id.num8);
++        num9 = rootview.findViewById(R.id.num9);
++        queren = rootview.findViewById(R.id.sure);
++
++        num0.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "0";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++
++        num1.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "1";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++
++        num2.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "2";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++
++        num3.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "3";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++
++        num4.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "4";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++        num5.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "5";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++        num6.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "6";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++        num7.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "7";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++        num8.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "8";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++        num9.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                String currentNumber = renzheng.getText().toString();
++                String newNumber = currentNumber + "9";
++                renzheng.setText("");
++                renzheng.setText(newNumber);
++            }
++        });
++
++        queren.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                if(renzheng.getText().toString().isEmpty()){
++                    Toast.makeText(AuthenticationFragment.this.getContext(), "请输入密码", Toast.LENGTH_SHORT).show();
++                }
++                else {
++                    EventBus.getDefault().post(new eventbusfasong(renzheng.getText().toString()));
++                    renzheng.setText("认证中");
++                    // 修改发送信息
++                }
++            }
++        });
++
++        return rootview;
++    }
++
++    @Subscribe(threadMode = ThreadMode.POSTING,sticky = true)
++    public void onEvent(eventbus event) {
++        String msg = event.getMsg();
++        try {
++            //json解析字符串
++            JSONObject jsonObject = new JSONObject(msg);
++            //通过 键 获取到 值
++            String RC522 = jsonObject.optString("RC522");
++            if(RC522.equals("")){
++                renzheng.setText("");
++                renzheng.setText("认证成功");
++            }
++            else{
++                renzheng.setText("认证失败");
++            }
++        } catch (JSONException e) {
++            e.printStackTrace();
++        }
++        //EventBus.getDefault().cancelEventDelivery(event);  //取消事件继续发布
++        //Toast.makeText(MessageFragment.this.getContext(), msg+"接收1", Toast.LENGTH_LONG).show();
++    }
++
++//    @Override
++//    public void onDestroy(){
++//        super.onDestroy();
++//        EventBus.getDefault().unregister(this);  //反注册EventBus
++//    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/menu/ContactsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/menu/ContactsFragment.java b/app/src/main/java/com/example/menu/ContactsFragment.java
+--- a/app/src/main/java/com/example/menu/ContactsFragment.java	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/java/com/example/menu/ContactsFragment.java	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -43,11 +43,11 @@
+     String flag;
+     int jieshouLED1 = 2;
+ 
+-    @Override
+-    public void onStart() {
+-        super.onStart();
+-        EventBus.getDefault().register(this);  //注册
+-    }
++//    @Override
++//    public void onStart() {
++//        super.onStart();
++//        EventBus.getDefault().register(this);  //注册
++//    }
+ 
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+@@ -204,9 +204,9 @@
+             jieshouLED1++;
+         }
+     }
+-    @Override
+-    public void onDestroy(){
+-        super.onDestroy();
+-        EventBus.getDefault().unregister(this);  //反注册EventBus
+-    }
++//    @Override
++//    public void onDestroy(){
++//        super.onDestroy();
++//        EventBus.getDefault().unregister(this);  //反注册EventBus
++//    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/menu/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/menu/MainActivity.java b/app/src/main/java/com/example/menu/MainActivity.java
+--- a/app/src/main/java/com/example/menu/MainActivity.java	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/java/com/example/menu/MainActivity.java	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -121,6 +121,7 @@
+      */
+     private SettingFragment settingFragment;
+ 
++    private AuthenticationFragment authenticationFragment;
+     /**
+      * 消息界面布局
+      */
+@@ -141,6 +142,8 @@
+      */
+     private View settingLayout;
+ 
++    private View authenticationLayout;
++
+     /**
+      * 在Tab布局上显示消息图标的控件
+      */
+@@ -161,6 +164,7 @@
+      */
+     private ImageView settingImage;
+ 
++    private ImageView authenticationImage;
+     /**
+      * 在Tab布局上显示消息标题的控件
+      */
+@@ -181,6 +185,7 @@
+      */
+     private TextView settingText;
+ 
++    private TextView authenticationText;
+     /**
+      * 用于对Fragment进行管理
+      */
+@@ -190,8 +195,9 @@
+     @Override
+     public void onStart() {
+         super.onStart();
+-        EventBus.getDefault().register(this);  //注册
+-        Log.d(TAG, "This is onStart");
++        if (!EventBus.getDefault().isRegistered(this)) {
++            EventBus.getDefault().register(this);  //注册
++        }
+     }
+     @SuppressLint("WrongViewCast")
+     @Override
+@@ -206,14 +212,17 @@
+         contactsLayout = findViewById(R.id.contacts_layout);
+         newsLayout = findViewById(R.id.news_layout);
+         settingLayout = findViewById(R.id.setting_layout);
++        authenticationLayout = findViewById(R.id.authentication_layout);
+         messageImage = (ImageView) findViewById(R.id.message_image);
+         contactsImage = (ImageView) findViewById(R.id.contacts_image);
+         newsImage = (ImageView) findViewById(R.id.news_image);
+         settingImage = (ImageView) findViewById(R.id.setting_image);
++        authenticationImage = (ImageView) findViewById(R.id.authentication_image);
+         messageText = (TextView) findViewById(R.id.message_text);
+         contactsText = (TextView) findViewById(R.id.contacts_text);
+         newsText = (TextView) findViewById(R.id.news_text);
+         settingText = (TextView) findViewById(R.id.setting_text);
++        authenticationText = (TextView) findViewById(R.id.authentication_text);
+         circle = (ImageView) findViewById(R.id.centerImage);
+         circle2 = (ImageView) findViewById(R.id.centerImage2);
+         shebei = (TextView) findViewById(R.id.shebei);
+@@ -222,13 +231,12 @@
+         contactsLayout.setOnClickListener(this);
+         newsLayout.setOnClickListener(this);
+         settingLayout.setOnClickListener(this);
++        authenticationLayout.setOnClickListener(this);
+ 
+         fragmentManager = getSupportFragmentManager();
+         circle2.setVisibility(View.GONE);
+         initViews();
+         // 第一次启动时选中第0个tab
+-        setTabSelection(2);
+-        setTabSelection(1);
+         setTabSelection(0);
+ 
+     }
+@@ -348,6 +356,10 @@
+                 // 当点击了设置tab时，选中第4个tab
+                 setTabSelection(3);
+                 break;
++            case R.id.authentication_layout:
++                // 当点击了人脸识别tab时，选中第5个tab
++                setTabSelection(4);
++                break;
+             default:
+                 break;
+         }
+@@ -407,7 +419,6 @@
+                 }
+                 break;
+             case 3:
+-            default:
+                 // 当点击了设置tab时，改变控件的图片和文字颜色
+                 settingImage.setImageResource(R.drawable.buttom_selected_four);
+                 settingText.setTextColor(Color.GREEN);
+@@ -419,6 +430,20 @@
+                     // 如果SettingFragment不为空，则直接将它显示出来
+                     transaction.show(settingFragment);
+                 }
++                break;
++            case 4:
++            default:
++                // 当点击了动态tab时，改变控件的图片和文字颜色
++                authenticationImage.setImageResource(R.drawable.buttom_selected_four);
++                authenticationText.setTextColor(Color.GREEN);
++                if (authenticationFragment == null) {
++                    // 如果NewsFragment为空，则创建一个并添加到界面上
++                    authenticationFragment = new AuthenticationFragment();
++                    transaction.add(R.id.content, authenticationFragment);
++                } else {
++                    // 如果NewsFragment不为空，则直接将它显示出来
++                    transaction.show(authenticationFragment);
++                }
+                 break;
+         }
+         transaction.commit();
+@@ -437,6 +462,8 @@
+         newsText.setTextColor(Color.parseColor("#82858b"));
+         settingImage.setImageResource(R.drawable.buttom_unselected_four);
+         settingText.setTextColor(Color.parseColor("#82858b"));
++        authenticationImage.setImageResource(R.drawable.buttom_unselected_four);
++        authenticationText.setTextColor(Color.parseColor("#82858b"));
+     }
+ 
+     /**
+@@ -458,6 +485,9 @@
+         if (settingFragment != null) {
+             transaction.hide(settingFragment);
+         }
++        if (authenticationFragment != null) {
++            transaction.hide(authenticationFragment);
++        }
+     }
+     private void init() {
+         Log.d(TAG, "This is init()");
+Index: app/src/main/java/com/example/menu/MessageFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/menu/MessageFragment.java b/app/src/main/java/com/example/menu/MessageFragment.java
+--- a/app/src/main/java/com/example/menu/MessageFragment.java	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/java/com/example/menu/MessageFragment.java	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -32,12 +32,12 @@
+     private
+     int i =0;
+ 
++//    @Override
++//    public void onStart() {
++//        super.onStart();
++//        EventBus.getDefault().register(this);  //注册
++//    }
+ 
+-    @Override
+-    public void onStart() {
+-        super.onStart();
+-        EventBus.getDefault().register(this);  //注册
+-    }
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -99,9 +99,9 @@
+         //Toast.makeText(MessageFragment.this.getContext(), msg+"接收1", Toast.LENGTH_LONG).show();
+     }
+ 
+-    @Override
+-    public void onDestroy(){
+-        super.onDestroy();
+-        EventBus.getDefault().unregister(this);  //反注册EventBus
+-    }
++//    @Override
++//    public void onDestroy(){
++//        super.onDestroy();
++//        EventBus.getDefault().unregister(this);  //反注册EventBus
++//    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/menu/NewsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/menu/NewsFragment.java b/app/src/main/java/com/example/menu/NewsFragment.java
+--- a/app/src/main/java/com/example/menu/NewsFragment.java	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/java/com/example/menu/NewsFragment.java	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -32,11 +32,11 @@
+ 
+     private View rootview;
+ 
+-    @Override
+-    public void onStart() {
+-        super.onStart();
+-        EventBus.getDefault().register(this);  //注册
+-    }
++//    @Override
++//    public void onStart() {
++//        super.onStart();
++//        EventBus.getDefault().register(this);  //注册
++//    }
+ 
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+@@ -136,10 +136,10 @@
+ 
+     //private Timer timer=new Timer();
+ 
+-    @Override
+-    public void onDestroy() {
+-        super.onDestroy();
+-        EventBus.getDefault().unregister(this);  //反注册EventBus
+-        //timer.cancel();//取消任务
+-    }
++//    @Override
++//    public void onDestroy() {
++//        super.onDestroy();
++//        EventBus.getDefault().unregister(this);  //反注册EventBus
++//        //timer.cancel();//取消任务
++//    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/menu/SettingFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/menu/SettingFragment.java b/app/src/main/java/com/example/menu/SettingFragment.java
+--- a/app/src/main/java/com/example/menu/SettingFragment.java	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/java/com/example/menu/SettingFragment.java	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -23,11 +23,12 @@
+     private View rootview;
+     private Switch recognize;
+     private ImageView imageView;
+-    @Override
+-    public void onStart() {
+-        super.onStart();
+-        EventBus.getDefault().register(this);  //注册
+-    }
++
++//    @Override
++//    public void onStart() {
++//        super.onStart();
++//        EventBus.getDefault().register(this);  //注册
++//    }
+ 
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+@@ -67,9 +68,9 @@
+         ImageView imageView = rootview.findViewById(R.id.imageView);
+         imageView.setImageBitmap(bitmap);
+     }
+-    @Override
+-    public void onDestroy(){
+-        super.onDestroy();
+-        EventBus.getDefault().unregister(this);  //反注册EventBus
+-    }
++//    @Override
++//    public void onDestroy(){
++//        super.onDestroy();
++//        EventBus.getDefault().unregister(this);  //反注册EventBus
++//    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_login.xml b/app/src/main/res/layout/activity_login.xml
+--- a/app/src/main/res/layout/activity_login.xml	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/res/layout/activity_login.xml	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -65,6 +65,8 @@
+                 android:layout_height="wrap_content"
+                 android:layout_marginLeft="3dp"
+                 android:text="记住密码"
++                android:buttonTint="#000000"
++                android:textColor="#000000"
+                 android:textSize="20sp"/>
+ 
+ 
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 69867d3057631e5c26a0afe47615f679f89ac898)
++++ b/app/src/main/res/layout/activity_main.xml	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -175,6 +175,34 @@
+                     android:textColor="#111112" />
+             </LinearLayout>
+         </RelativeLayout>
++        <RelativeLayout
++            android:id="@+id/authentication_layout"
++            android:layout_width="0sp"
++            android:layout_height="match_parent"
++            android:layout_weight="1" >
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_centerVertical="true"
++                android:orientation="vertical" >
++
++                <ImageView
++                    android:id="@+id/authentication_image"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:layout_gravity="center_horizontal"
++                    android:src="@drawable/buttom_unselected_four" />
++
++                <TextView
++                    android:id="@+id/authentication_text"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:layout_gravity="center_horizontal"
++                    android:text="认证"
++                    android:textColor="#111112" />
++            </LinearLayout>
++        </RelativeLayout>
+     </LinearLayout>
+ 
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/authentication_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/authentication_layout.xml b/app/src/main/res/layout/authentication_layout.xml
+new file mode 100644
+--- /dev/null	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
++++ b/app/src/main/res/layout/authentication_layout.xml	(revision f33d02b0c83416d1514e08b68454b3b7e5ebcf06)
+@@ -0,0 +1,114 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:gravity="center">
++
++    <RelativeLayout
++        android:layout_width="360dp"
++        android:layout_height="580dp"
++        android:orientation="vertical"
++        android:background="@drawable/corners_fb">
++        <TextView
++            android:id="@+id/renzheng"
++            android:layout_width="300dp"
++            android:layout_height="50dp"
++            android:layout_centerHorizontal="true"
++            android:background="@drawable/corners_fb"
++            android:gravity="center"
++            android:text=""
++            android:textSize="20dp"
++            android:layout_marginTop="30sp"/>
++        <GridLayout
++            android:layout_marginTop="200sp"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:columnCount="3"
++            android:rowCount="4">
++
++            <!-- 第一行 -->
++            <Button
++                android:id="@+id/num1"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="1" />
++
++            <Button
++                android:id="@+id/num2"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="2" />
++
++            <Button
++                android:id="@+id/num3"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="3" />
++
++            <!-- 第二行 -->
++            <Button
++                android:id="@+id/num4"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="4" />
++
++            <Button
++                android:id="@+id/num5"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="5" />
++
++            <Button
++                android:id="@+id/num6"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="6" />
++
++            <!-- 第三行 -->
++            <Button
++                android:id="@+id/num7"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="7" />
++
++            <Button
++                android:id="@+id/num8"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="8" />
++
++            <Button
++                android:id="@+id/num9"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="9" />
++
++            <!-- 第四行 -->
++            <Button
++                android:id="@+id/num0"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnSpan="2"
++                android:layout_columnWeight="2"
++                android:text="0" />
++
++            <Button
++                android:id="@+id/sure"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:layout_columnWeight="1"
++                android:text="确认" />
++
++        </GridLayout>
++    </RelativeLayout>
++</RelativeLayout>
+\ No newline at end of file
