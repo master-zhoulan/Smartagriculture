@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +32,14 @@ public class MessageFragment extends Fragment {
     private TextView menjin2;
     private
     int i =0;
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        EventBus.getDefault().register(this);  //注册
-//    }
+    private static final String TAG = "MainActivity1";
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);  //注册
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class MessageFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.POSTING,sticky = true)
     public void onEvent(eventbus event) {
         String msg = event.getMsg();
+//        Log.d(TAG, msg);
         try {
             //json解析字符串
             JSONObject jsonObject = new JSONObject(msg);
@@ -99,9 +103,9 @@ public class MessageFragment extends Fragment {
         //Toast.makeText(MessageFragment.this.getContext(), msg+"接收1", Toast.LENGTH_LONG).show();
     }
 
-//    @Override
-//    public void onDestroy(){
-//        super.onDestroy();
-//        EventBus.getDefault().unregister(this);  //反注册EventBus
-//    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);  //反注册EventBus
+    }
 }

@@ -43,11 +43,13 @@ public class ContactsFragment extends Fragment {
     String flag;
     int jieshouLED1 = 2;
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        EventBus.getDefault().register(this);  //注册
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);  //注册
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -204,9 +206,9 @@ public class ContactsFragment extends Fragment {
             jieshouLED1++;
         }
     }
-//    @Override
-//    public void onDestroy(){
-//        super.onDestroy();
-//        EventBus.getDefault().unregister(this);  //反注册EventBus
-//    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);  //反注册EventBus
+    }
 }

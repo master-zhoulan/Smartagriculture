@@ -62,11 +62,11 @@ import java.util.concurrent.TimeUnit;
 //192.168.137.1  admin  520184zja  testtopic second
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //访问的地址，这里填写mqtt代理服务器ip
-    private String host = "tcp://116.62.156.155";
+    private String host = "tcp://192.168.137.1";
     //登录账号
-    private String userName = "test";
+    private String userName = "admin";
     //登录密码
-    private String passWord = "tes";
+    private String passWord = "520184zja";
     //这个是mqtt_id  唯一id，每个客户端应该生成不同的唯一id，这里测试演示数据，我就写固定的id，打包到不同的手机上安装，要手动修改或修改成动态id，获取随机数+时间方式生成一个随机数作为唯一id
     private String mqtt_id = "12";
 
@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private MqttClient client;
 
-    private String mqtt_sub_topic = "/my/devpub"; //订阅主题(消息接收方)
+    private String mqtt_sub_topic = "testtopic"; //订阅主题(消息接收方)
 
-    private String mqtt_pub_topic = "/my/devsub";//发布主题（消息发送方）
+    private String mqtt_pub_topic = "second";//发布主题（消息发送方）
 
 //    private String mqtt_sub_topic = "testtopic"; //订阅主题(消息接收方)
 //
@@ -274,10 +274,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         init();
         startReconnect();
 
-        HandlerThread handlerThread = new HandlerThread("MyHandlerThread");
-        handlerThread.start();
-
-        handler = new Handler(handlerThread.getLooper()) {
+        handler = new Handler() {
 
             @SuppressLint("SetTextIl8n")
             public void handleMessage(Message msg) {
@@ -291,11 +288,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         runOnUiThread(new Runnable()//不允许其他线程直接操作组件，用提供的此方法可以
                         {
                             public void run() {
-                                // TODO Auto-generated method stub
-                                String s = msg.obj.toString();
+                                if (msg.obj != null) {
+                                    // 如果消息不为空
+                                    String s = msg.obj.toString();
                                 try {
                                     //json解析字符串
                                     JSONObject jsonObject = new JSONObject(s);
+                                    Log.d(TAG, jsonObject.toString());
                                     //通过eventbus传给fragment
                                     EventBus.getDefault().postSticky(new eventbus(jsonObject.toString()));
                                     String flag = jsonObject.optString("START");
@@ -311,6 +310,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                }
+                            }
+                                else {
+//                                    消息为空
+                                    Log.d(TAG, "jsonObject.toString()");
                                 }
                             }
                         });

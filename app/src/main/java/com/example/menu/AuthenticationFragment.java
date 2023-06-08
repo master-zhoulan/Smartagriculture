@@ -37,11 +37,13 @@ public class AuthenticationFragment extends Fragment {
     private Button num0;
     private Button queren;
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        EventBus.getDefault().register(this);  //注册
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);  //注册
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -201,9 +203,9 @@ public class AuthenticationFragment extends Fragment {
         //Toast.makeText(MessageFragment.this.getContext(), msg+"接收1", Toast.LENGTH_LONG).show();
     }
 
-//    @Override
-//    public void onDestroy(){
-//        super.onDestroy();
-//        EventBus.getDefault().unregister(this);  //反注册EventBus
-//    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);  //反注册EventBus
+    }
 }
