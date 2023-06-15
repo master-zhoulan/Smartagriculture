@@ -18,7 +18,7 @@ public abstract class BaseLinerView {
     public View mView;
 
     // 最多显示30 条X轴数据 超过重新开始
-    public static final int MAX_VALUES = 30;
+    public static final int MAX_VALUES = 100;
 
     private LineChart line_chart;
 

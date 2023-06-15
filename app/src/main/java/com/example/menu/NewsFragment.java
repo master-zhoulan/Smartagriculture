@@ -112,7 +112,7 @@ public class NewsFragment extends Fragment {
         baseLinerView3.lineColor2 = "#FF3B7CFF";
         baseLinerView3.zeroLine = 0;
         baseLinerView3.minValue = 50;
-        baseLinerView3.maxValue = 200;
+        baseLinerView3.maxValue = 300;
         baseLinerView3.initView();
     }
 

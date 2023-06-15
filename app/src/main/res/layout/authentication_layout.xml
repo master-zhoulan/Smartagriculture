@@ -11,6 +11,14 @@
         android:orientation="vertical"
         android:background="@drawable/corners_fb">
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份认证"
+            android:textSize="40sp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginLeft="100sp"
+            android:layout_marginTop="20sp"/>
+        <TextView
             android:id="@+id/renzheng"
             android:layout_width="300dp"
             android:layout_height="50dp"
@@ -19,7 +27,7 @@
             android:gravity="center"
             android:text=""
             android:textSize="20dp"
-            android:layout_marginTop="30sp"/>
+            android:layout_marginTop="90sp"/>
         <GridLayout
             android:layout_marginTop="200sp"
             android:layout_width="match_parent"
@@ -46,7 +54,7 @@
                 android:id="@+id/num3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
+                android:layout_columnWeight="2"
                 android:text="3" />
 
             <!-- 第二行 -->
@@ -98,10 +106,17 @@
                 android:id="@+id/num0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_columnSpan="2"
+                android:layout_columnSpan="1"
                 android:layout_columnWeight="2"
                 android:text="0" />
 
+            <Button
+                android:id="@+id/qingchu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="2"
+                android:text="清除" />
             <Button
                 android:id="@+id/sure"
                 android:layout_width="0dp"

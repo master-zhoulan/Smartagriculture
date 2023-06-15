@@ -62,15 +62,16 @@ import java.util.concurrent.TimeUnit;
 //192.168.137.1  admin  520184zja  testtopic second
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //访问的地址，这里填写mqtt代理服务器ip
-    private String host = "tcp://192.168.137.1";
+    private String host = "tcp://116.62.156.155";
     //登录账号
-    private String userName = "admin";
+    private String userName = "test";
     //登录密码
-    private String passWord = "520184zja";
+    private String passWord = "test";
     //这个是mqtt_id  唯一id，每个客户端应该生成不同的唯一id，这里测试演示数据，我就写固定的id，打包到不同的手机上安装，要手动修改或修改成动态id，获取随机数+时间方式生成一个随机数作为唯一id
-    private String mqtt_id = "12";
+    private String mqtt_id = "100";
 
-    private static final String TAG = "MainActivity";
+//    private static final String TAG = "MainActivity";
+//
 //    private String host = "tcp://192.168.137.1";
 //    //登录账号
 //    private String userName = "admin";
@@ -86,9 +87,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private MqttClient client;
 
-    private String mqtt_sub_topic = "testtopic"; //订阅主题(消息接收方)
+    private String mqtt_sub_topic = "/my/devpub"; //订阅主题(消息接收方)
 
-    private String mqtt_pub_topic = "second";//发布主题（消息发送方）
+    private String mqtt_pub_topic = "/my/devsub";//发布主题（消息发送方）
 
 //    private String mqtt_sub_topic = "testtopic"; //订阅主题(消息接收方)
 //
@@ -235,6 +236,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         fragmentManager = getSupportFragmentManager();
         circle2.setVisibility(View.GONE);
+
+//        Toast.makeText(this, userName, Toast.LENGTH_SHORT).show();
+
+//        EventBus.getDefault().post(new eventbusfasong());
         initViews();
         // 第一次启动时选中第0个tab
         setTabSelection(0);
@@ -324,6 +329,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case 31: //连接成功
                         Toast.makeText(MainActivity.this, "连接成功", Toast.LENGTH_SHORT).show();
+                        Intent intent = getIntent();
+                        Bundle bundle = intent.getExtras();
+                        String userName = bundle.getString("userName");
+                        String passWord = bundle.getString("passWord");
+                        publishmessageplus(mqtt_pub_topic,"{\"userName\":\""+ userName + "\",\"passWord\":\"" + passWord + "\"}");
                         try {
                             client.subscribe(mqtt_sub_topic, 2);
                             Toast.makeText(MainActivity.this, "订阅成功", Toast.LENGTH_SHORT).show();
@@ -424,7 +434,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 3:
                 // 当点击了设置tab时，改变控件的图片和文字颜色
-                settingImage.setImageResource(R.drawable.buttom_selected_four);
+                settingImage.setImageResource(R.drawable.buttom_selected_renlian);
                 settingText.setTextColor(Color.GREEN);
                 if (settingFragment == null) {
                     // 如果SettingFragment为空，则创建一个并添加到界面上
@@ -464,7 +474,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contactsText.setTextColor(Color.parseColor("#82858b"));
         newsImage.setImageResource(R.drawable.buttom_unselected_three);
         newsText.setTextColor(Color.parseColor("#82858b"));
-        settingImage.setImageResource(R.drawable.buttom_unselected_four);
+        settingImage.setImageResource(R.drawable.buttom_unselected_renlian);
         settingText.setTextColor(Color.parseColor("#82858b"));
         authenticationImage.setImageResource(R.drawable.buttom_unselected_four);
         authenticationText.setTextColor(Color.parseColor("#82858b"));

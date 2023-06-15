@@ -36,6 +36,7 @@ public class AuthenticationFragment extends Fragment {
     private Button num9;
     private Button num0;
     private Button queren;
+    private Button qingchu;
 
     @Override
     public void onStart() {
@@ -68,6 +69,7 @@ public class AuthenticationFragment extends Fragment {
         num8 = rootview.findViewById(R.id.num8);
         num9 = rootview.findViewById(R.id.num9);
         queren = rootview.findViewById(R.id.sure);
+        qingchu = rootview.findViewById(R.id.qingchu);
 
         num0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +166,13 @@ public class AuthenticationFragment extends Fragment {
             }
         });
 
+        qingchu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                renzheng.setText("");
+            }
+        });
+
         queren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,7 +180,8 @@ public class AuthenticationFragment extends Fragment {
                     Toast.makeText(AuthenticationFragment.this.getContext(), "请输入密码", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    EventBus.getDefault().post(new eventbusfasong(renzheng.getText().toString()));
+//                    EventBus.getDefault().post(new eventbusfasong(renzheng.getText().toString()));
+
                     renzheng.setText("认证中");
                     // 修改发送信息
                 }
@@ -189,7 +199,7 @@ public class AuthenticationFragment extends Fragment {
             JSONObject jsonObject = new JSONObject(msg);
             //通过 键 获取到 值
             String RC522 = jsonObject.optString("RC522");
-            if(RC522.equals("")){
+            if(RC522.equals("写入确认密码")){
                 renzheng.setText("");
                 renzheng.setText("认证成功");
             }
