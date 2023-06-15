@@ -40,7 +40,7 @@
             android:layout_below="@+id/title2"
             android:layout_marginLeft="220dp"
             android:layout_marginTop="50dp"
-            android:text="工作灯"/>
+            android:text="门禁"/>
         <Switch
             android:id="@+id/DJ1"
             android:layout_marginRight="15dp"
@@ -51,7 +51,7 @@
             android:layout_below="@+id/LED1"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="50dp"
-            android:text="浇水"/>
+            android:text="开门"/>
         <EditText
             android:id="@+id/DJ1CS"
             android:layout_width="100dp"
@@ -73,7 +73,7 @@
             android:layout_below="@+id/DJ1"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="50dp"
-            android:text="大棚"/>
+            android:text="关门"/>
         <EditText
             android:id="@+id/DJ2CS"
             android:layout_width="100dp"
@@ -93,9 +93,9 @@
             android:thumb="@drawable/switch_ios_track"
             android:track="@drawable/switch_ios_track_selector"
             android:layout_below="@+id/DJ2"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="50dp"
-            android:text="门禁"/>
+            android:text="人脸识别"/>
         <Switch
             android:id="@+id/DJ"
             android:layout_marginRight="15dp"
@@ -106,7 +106,7 @@
             android:layout_below="@+id/DJ2"
             android:layout_marginLeft="220dp"
             android:layout_marginTop="50dp"
-            android:text="火警"/>
+            android:text="报警"/>
         <Switch
             android:id="@+id/FMQ"
             android:layout_marginRight="15dp"
@@ -129,16 +129,16 @@
             android:hint="0~10"
             android:textColor="#FFFFFF"
             android:gravity="center"/>
-        <Switch
-            android:id="@+id/face"
-            android:layout_marginRight="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:thumb="@drawable/switch_ios_track"
-            android:track="@drawable/switch_ios_track_selector"
-            android:layout_below="@+id/CS"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="50dp"
-            android:text="人脸识别"/>
+<!--        <Switch-->
+<!--            android:id="@+id/face"-->
+<!--            android:layout_marginRight="15dp"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:thumb="@drawable/switch_ios_track"-->
+<!--            android:track="@drawable/switch_ios_track_selector"-->
+<!--            android:layout_below="@+id/CS"-->
+<!--            android:layout_marginLeft="140dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:text="人脸识别"/>-->
     </RelativeLayout>
 </RelativeLayout>

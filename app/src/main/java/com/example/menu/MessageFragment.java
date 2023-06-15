@@ -1,6 +1,7 @@
 package com.example.menu;
 
 //import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -59,8 +60,10 @@ public class MessageFragment extends Fragment {
         huozai2 = rootview.findViewById(R.id.huozai2);
         baojing2 = rootview.findViewById(R.id.baojing2);
         menjin2 = rootview.findViewById(R.id.menjin2);
+
         return rootview;
     }
+
 
     @Subscribe(threadMode = ThreadMode.POSTING,sticky = true)
     public void onEvent(eventbus event) {
@@ -75,7 +78,8 @@ public class MessageFragment extends Fragment {
             double LIGHT = jsonObject.optDouble("LIGHT");
             String ALARM = jsonObject.optString("ALARM");
             double FLAME = jsonObject.optDouble("FLAME");
-            String RC522 = jsonObject.optString("RC522");
+            int DOOR = jsonObject.optInt("DOOR");
+//            String RC522 = jsonObject.optString("RC522");
             if (!ALARM.equals(""))  i++;
             wendu2.setText(TEMP + "℃");
             shidu2.setText(HUM + "RH");
@@ -90,12 +94,19 @@ public class MessageFragment extends Fragment {
                 huozai2.setTextColor(Color.BLACK);
             }
             baojing2.setText(i+"次");
-            if(RC522.equals("1"))
-                menjin2.setText("认证成功");
-            else if(RC522.equals("0"))
-                menjin2.setText("无认证");
-            else if(RC522.equals("-1"))
-                menjin2.setText("认证失败");
+            if(DOOR==1){
+                menjin2.setText("开门");
+            }
+            else
+            {
+                menjin2.setText("关门");
+            }
+//            if(RC522.equals("1"))
+//                menjin2.setText("认证成功");
+//            else if(RC522.equals("0"))
+//                menjin2.setText("无认证");
+//            else if(RC522.equals("-1"))
+//                menjin2.setText("认证失败");
         } catch (JSONException e) {
             e.printStackTrace();
         }

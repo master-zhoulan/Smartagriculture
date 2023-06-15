@@ -17,6 +17,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.menu.utils.MD5Utils;
+import org.greenrobot.eventbus.Subscribe;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText et_username,et_pwd;
     private CheckBox save_pwd;
     private String userName,passWord,spPsw;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         tv_register = (TextView) findViewById(R.id.register);
         //获取记住的账号密码
         getUserInfo();
+
         //登录方法
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +65,16 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                     // md5Psw.equals(); 判断密码是否与注册的一致
                 }else if(md5Psw.equals(spPsw)){
+
+//                    EventBus.getDefault().post(new eventbusfasong("{\"userName\":"+ userName + "\"passWord\":" + passWord + "}"));
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    intent.putExtra("userName", userName);
+                    intent.putExtra("passWord", passWord);
+                    intent.putExtras(bundle);
+//                    startActivity(intent);
+
                     //一致登录成功
                     Toast.makeText( LoginActivity.this, "welcome！"+ userName, Toast.LENGTH_SHORT).show();
                     //保存登录状态，在界面保存登录的用户名和密码
@@ -72,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     //关闭登录界面
                     LoginActivity.this.finish();
                     //跳转到下一个界面
-                    startActivity(new Intent( LoginActivity.this, MainActivity.class));
+                    startActivity(intent);
                     return;
                     //如果用户名或者账号错误会提示错误
                 }else if((spPsw!=null&&!TextUtils.isEmpty(spPsw)&&!md5Psw.equals(spPsw))){
@@ -160,4 +175,5 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         LoginActivity.this.finish();
     }
+
 }

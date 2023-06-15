@@ -75,7 +75,7 @@ public class ContactsFragment extends Fragment {
         DJ1CS = rootview.findViewById(R.id.DJ1CS);
         DJ2CS = rootview.findViewById(R.id.DJ2CS);
         CS = rootview.findViewById(R.id.CS);
-        FACE = rootview.findViewById(R.id.face);
+//        FACE = rootview.findViewById(R.id.face);
 
         LED1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -103,18 +103,18 @@ public class ContactsFragment extends Fragment {
                     EventBus.getDefault().post(new eventbusfasong("{\"LED2\":0}"));
                 }
             }
-        }); //工作灯
+        }); //门禁
         DJ1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 String text = DJ1CS.getText().toString();
                 if (isChecked){
                     //选中状态 可以做一些操作
-                    EventBus.getDefault().post(new eventbusfasong("{\"MOT1\":" + text + "}"));
+                    EventBus.getDefault().post(new eventbusfasong("{\"OPEN\":1}"));
                 }else {
                     //未选中状态 可以做一些操作
 
-                    EventBus.getDefault().post(new eventbusfasong("{\"MOT1\":0}"));
+                    EventBus.getDefault().post(new eventbusfasong("{\"OPEN\":0}"));
                 }
             }
         });  //浇水
@@ -124,10 +124,10 @@ public class ContactsFragment extends Fragment {
                 String text = DJ2CS.getText().toString();
                 if (isChecked){
                     //选中状态 可以做一些操作
-                    EventBus.getDefault().post(new eventbusfasong("{\"MOT2\":" + text + "}"));
+                    EventBus.getDefault().post(new eventbusfasong("{\"CLOSE\":1}"));
                 }else {
                     //未选中状态 可以做一些操作
-                    EventBus.getDefault().post(new eventbusfasong("{\"MOT2\":0}"));
+                    EventBus.getDefault().post(new eventbusfasong("{\"CLOSE\":0}"));
                 }
             }
         });  //大棚
@@ -142,7 +142,7 @@ public class ContactsFragment extends Fragment {
                     EventBus.getDefault().post(new eventbusfasong("{\"LED3\":0}"));
                 }
             }
-        });   //门禁
+        });   //人脸识别
         DJ.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -156,7 +156,7 @@ public class ContactsFragment extends Fragment {
                     EventBus.getDefault().post(new eventbusfasong("{\"LED4\":0}"));
                 }
             }
-        });   //火警
+        });   //报警
         FMQ.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -171,18 +171,18 @@ public class ContactsFragment extends Fragment {
             }
         });  //报警
 
-        FACE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    //选中状态 可以做一些操作
-                    EventBus.getDefault().post(new eventbusfasong("{\"LED1\":1}"));
-                }else{
-                    //未选中状态 可以做一些操作
-                    EventBus.getDefault().post(new eventbusfasong("{\"LED1\":0}"));
-                }
-            }
-        }); //人脸识别
+//        FACE.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked){
+//                    //选中状态 可以做一些操作
+//                    EventBus.getDefault().post(new eventbusfasong("{\"LED1\":1}"));
+//                }else{
+//                    //未选中状态 可以做一些操作
+//                    EventBus.getDefault().post(new eventbusfasong("{\"LED1\":0}"));
+//                }
+//            }
+//        }); //人脸识别
         return rootview;
     }
     @Subscribe(threadMode = ThreadMode.POSTING,sticky = true)

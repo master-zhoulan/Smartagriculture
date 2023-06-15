@@ -1,48 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:gravity="center">
 
-    <Switch
+    <RelativeLayout
+        android:layout_width="360dp"
+        android:layout_height="580dp"
+        android:orientation="vertical"
+        android:background="@drawable/corners_fb">
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:text="人脸识别"
+        android:textSize="40dp"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="60sp"
+        android:layout_marginLeft="100sp" />
+<!--    <Switch-->
+<!--        android:id="@+id/recognize"-->
+<!--        android:layout_marginRight="15dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:thumb="@drawable/switch_ios_track"-->
+<!--        android:track="@drawable/switch_ios_track_selector"-->
+<!--        android:layout_marginLeft="70dp"-->
+<!--        android:layout_marginTop="490dp"-->
+<!--        android:text="增加人脸"/>-->
+    <Button
+        android:id="@+id/face_add"
+        android:layout_width="100sp"
+        android:layout_height="50sp"
+        android:background="@drawable/button_style"
+        android:layout_marginLeft="135sp"
+        android:layout_marginTop="240sp"
+        android:gravity="center"
+        android:text="增加人脸"/>
+    <Button
+        android:id="@+id/face_sub"
+        android:layout_width="100sp"
+        android:layout_height="50sp"
+        android:background="@drawable/button_style"
+        android:layout_marginLeft="135sp"
+        android:layout_marginTop="340sp"
+        android:gravity="center"
+        android:text="删除人脸"/>
+    <Button
         android:id="@+id/recognize"
-        android:layout_marginRight="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:thumb="@drawable/switch_ios_track"
-        android:track="@drawable/switch_ios_track_selector"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="490dp"
-        android:text="开始识别"/>
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="300dp">
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_gravity="center_vertical"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_width="100sp"
+        android:layout_height="50sp"
+        android:background="@drawable/button_style"
+        android:layout_marginLeft="135sp"
+        android:layout_marginTop="440sp"
+        android:gravity="center"
+        android:text="人脸识别"/>
+<!--    <LinearLayout-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300dp">-->
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="230dp"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:background="@drawable/corners_fb"-->
+<!--            />-->
+<!--    </LinearLayout>-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/wumai" />
+    <EditText
+        android:id="@+id/facename"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="150sp"
+        android:layout_marginLeft="120sp"
+        android:background="@drawable/corners_fb"
+        android:gravity="center"
+        android:text="name"
+        android:textSize="30sp"/>
+    </RelativeLayout>
+    <!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:orientation="vertical">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:text="图片"
-            android:textSize="20sp" />
-    </LinearLayout>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:src="@drawable/wumai" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="图片"-->
+<!--            android:textSize="20sp" />-->
+<!--    </LinearLayout>-->
 
 </RelativeLayout>
